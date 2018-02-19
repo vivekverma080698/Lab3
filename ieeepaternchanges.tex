@@ -45,7 +45,8 @@
 %
 % For tracking purposes - this is V1.9 - April 2009
 
-\documentclass{sig-alternate}
+%\documentclass{sig-alternate}
+\documentclass{IEEEtran}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{kbordermatrix}
@@ -105,26 +106,26 @@
 %
 % 1st. author
 \alignauthor
-Mukesh Saini\\
+Vivek Kumar Verma\\
        \affaddr{Dept. of Computer Science }\\
-       \affaddr{National University of Singapore}\\
+       \affaddr{Indian Institute of Technology}\\
        \affaddr{mksaini@comp.nus.edu.sg}
 % 2nd. author
 \alignauthor
- Wei Tsang Ooi\\
+ Ram Krishna\\
        \affaddr{Dept. of Computer Science}\\
-       \affaddr{National University of Singapore}\\
+       \affaddr{Indian Institute of Technology}\\
        \affaddr{ooiwt@comp.nus.edu.sg}
 % 3rd. author
-\and Shuicheng Yan\\
-       \affaddr{Dept. of ECE}\\
-       \affaddr{National University of Singapore}\\
+\and Komal \\
+       \affaddr{Dept. of Computer Science}\\
+       \affaddr{Indian Institute of Technology}\\
        \affaddr{eleyans@nus.edu.sg}
   % use '\and' if you need 'another row' of author names
 % 4th. author
-\alignauthor Raghudeep Gadde\\
-       \affaddr{Dept. of ECE}\\
-       \affaddr{National University of Singapore}\\
+\alignauthor Prasad\\
+       \affaddr{Dept. of Computer Science}\\
+       \affaddr{Indian Institute of Technology}\\
        \affaddr{elerdg@nus.edu.sg}
 }
 % There's nothing stopping you putting the seventh, eighth, etc.
@@ -141,7 +142,7 @@ Mukesh Saini\\
 
 \maketitle
 \begin{abstract}
-With the proliferation of  mobile video cameras, it is becoming easier for users to capture videos of live performances and socially share them with friends and public. As an attendee of such live performances typically has limited mobility, each video camera is able to capture only from a range of restricted viewing angles and distance, producing a rather monotonous video clip. At such performances, however, multiple video clips can be captured by different users, likely from different angles and distances. These videos can be combined to produce a more interesting and representative mashup of the live performances for broadcasting and sharing. The earlier works select video shots merely based on the quality of currently available videos. In real video editing process, however, recent selection history plays an important role in choosing future shots. In this work, we present MoViMash, a framework for automatic online video mashup that makes smooth shot transitions to cover the performance from diverse perspectives. Shot transition and shot length distributions are learned from professionally edited videos. Further, we introduce view quality assessment in the framework to filter out shaky, occluded, and tilted videos. To the best of our knowledge, this is the first attempt to incorporate history based diversity measurement, state-based video editing rules, and view quality in automated video mashup generations. Experimental results have been provided to demonstrate the effectiveness of MoViMash framework. \\ \textbf{Categories and Subject Descriptors:} I.2.10 [Vision and Scene Understanding]: Video Analysis \\\textbf{General Terms:} Algorithms, Design.\\\textbf{Keywords:} Mobile Video, Virtual Director, Video Mashup.
+With the proliferation of  mobile video cameras, it is becoming easier for users to capture videos of I eddited this live performances and socially share them with friends and public. As an attendee of such live performances typically has limited mobility, each video camera is able to capture only from a range of restricted viewing angles and distance, producing a rather monotonous video clip. At such performances, however, multiple video clips can be captured by different users, likely from different angles and distances. These videos can be combined to produce a more interesting and representative mashup of the live performances for broadcasting and sharing. The earlier works select video shots merely based on the quality of currently available videos. In real video editing process, however, recent selection history plays an important role in choosing future shots. In this work, we present MoViMash, a framework for automatic online video mashup that makes smooth shot transitions to cover the performance from diverse perspectives. Shot transition and shot length distributions are learned from professionally edited videos. Further, we introduce view quality assessment in the framework to filter out shaky, occluded, and tilted videos. To the best of our knowledge, this is the first attempt to incorporate history based diversity measurement, state-based video editing rules, and view quality in automated video mashup generations. Experimental results have been provided to demonstrate the effectiveness of MoViMash framework. \\ \textbf{Categories and Subject Descriptors:} I.2.10 [Vision and Scene Understanding]: Video Analysis \\\textbf{General Terms:} Algorithms, Design.\\\textbf{Keywords:} Mobile Video, Virtual Director, Video Mashup.
  \end{abstract}
 
 % A category with the (minimum) three required fields
@@ -154,7 +155,7 @@ With the proliferation of  mobile video cameras, it is becoming easier for users
 %\keywords{ACM proceedings, \LaTeX, text tagging}
 
 \section{Introduction}
-mY NAME Vivek kumar verma. Worldwide shipment of camera phones were estimated to reach 1.14 billion in the year 2011 alone \cite{zinn1996quantum}.
+I editted this. Worldwide shipment of camera phones were estimated to reach 1.14 billion in the year 2011 alone \cite{zinn1996quantum}.
 Furthermore,a survey of over 2,500 respondents by Photo bucket reveals that 45\% of the respondents use mobile devices to shoot video at least once weekly during summer of 2011, validating significant increase in the amount of mobile video uploaded to Photo buckets video sharing website(14 in Summer 2011 compared to December 2010)\cite{cabrera2001path}.
 
  Proliferation of such mobile devices with video capture capability has enabled users to capture video of their life events such as concerts, parades, outdoor performances, etc, and socially share them with friends and public as it happens. Videos recorded by a single user at such events are shot from a limited range of angles and distances from the performance stage, as an attendee typically has limited mobility(e.g., constraint by seat in arrangement).\\ The recorded video can be monotonous and uninteresting. Furthermore, videos recorded are typically short (in the order of minutes or tens of minutes), due to tired arms or power constraint of mobile devices. There are, however, likely to have more than one users recording the same performance from different angles at the same time, especially at a well-attended performance. These recorded and shared video clips of the same performance can be cut and joined together to produce a new mashup video, similar to how a TV director of a live TV show would switch between different cameras to produce the show. Generation of a video mashup can be cast as a video selection problem: given a set of video clips capturing the same performance event, automatically select one of the video clips at any one time instance to be included in the output mashup video.
@@ -171,7 +172,7 @@ Furthermore,a survey of over 2,500 respondents by Photo bucket reveals that 45\%
 \end{figure}
 and tilt angle can be obtained from easily sensory data of mobile device when available. 
 
-The shooting angle of the remaining videos are then classiﬁed as either center,left,and right; and distance from the stage as near and far as shown in Figure \ref{fig:figure1}. This classiﬁcation is done every time we perform video selection because mobile users may change their position overtime. MoViMash now decides which shooting angle and distance should be used; and for how long the selected class should persist. To this end, MoViMash tries to imitate a professional video editor, by using a ﬁnite state machine, whose transition probabilities are learned from analyzing professionally edited videos of the same type of event. The rationale behind the inclusion of learning is that, we have observed that there are no generic editing rules that can be precisely deﬁned to work with all types of events. The video editors make ﬁne decisions such as shot lengths and transitions based on their experience which is hard to enumerate. 
+I editted this. The shooting angle of the remaining videos are then classiﬁed as either center,left,and right; and distance from the stage as near and far as shown in Figure \ref{fig:figure1}. This classiﬁcation is done every time we perform video selection because mobile users may change their position overtime. MoViMash now decides which shooting angle and distance should be used; and for how long the selected class should persist. To this end, MoViMash tries to imitate a professional video editor, by using a ﬁnite state machine, whose transition probabilities are learned from analyzing professionally edited videos of the same type of event. The rationale behind the inclusion of learning is that, we have observed that there are no generic editing rules that can be precisely deﬁned to work with all types of events. The video editors make ﬁne decisions such as shot lengths and transitions based on their experience which is hard to enumerate. 
 
 The videos from the selected class are further ranked based on the video quality and diversity values to make the ﬁnal selection. To consider video quality, MoViMash favors video with low blurriness, low blockiness (good compression), good contrast, and good illumination in each video. To consider diversity,MoViMash stores a history of recent video selections and favors videos with dissimilar views with recent selections. 
 
@@ -188,7 +189,7 @@ We have developed MoViMash’s algorithm such that it is online and only depends
 \textbf{Organization.} The rest of the paper is organized as follows. We provide a review of earlier work in Section 2. In Section 3 we describe proposed mashup framework. We evaluate our system in Section 4. The conclusions are provided in Section 5.
 
 \section{Previous Work}
-There has been only few works on online camera selection. In most of these works, videos are mainly selected to show the speakers. In the work by Machnicki and Rowe \cite{paddle2006effect}, an online lecture webcast system is presented in which the cameras that are focusing on speaker and the presentation (the screen) are selected iteratively until anybody from audience asks question. When audience ask question, the camera that is focusing the person asking question is selected. The automatic selection of cameras in a lecture webcast is extended by Zhang et al. \cite{piron1976foundations} to include audio based localization and speaker tracking. Similar approach is taken by Cutler et al. [6] in a meeting scenario where camera that shows the current speaker is selected. Ranjan et al. [12] use face tracking and audio analysis to show the close-up of the person talking. Since performers play more important role than speakers in live concerts, a speaker based selection is not appropriate. Further, the faces are generally far from the camera which cannot be detected. Therefore, face detection is not a reliable basis to select videos.
+I editted this. There has been only few works on online camera selection. In most of these works, videos are mainly selected to show the speakers. In the work by Machnicki and Rowe \cite{paddle2006effect}, an online lecture webcast system is presented in which the cameras that are focusing on speaker and the presentation (the screen) are selected iteratively until anybody from audience asks question. When audience ask question, the camera that is focusing the person asking question is selected. The automatic selection of cameras in a lecture webcast is extended by Zhang et al. \cite{piron1976foundations} to include audio based localization and speaker tracking. Similar approach is taken by Cutler et al. [6] in a meeting scenario where camera that shows the current speaker is selected. Ranjan et al. [12] use face tracking and audio analysis to show the close-up of the person talking. Since performers play more important role than speakers in live concerts, a speaker based selection is not appropriate. Further, the faces are generally far from the camera which cannot be detected. Therefore, face detection is not a reliable basis to select videos.
 
  Al-Hamesetal.\cite{zinn1996quantum} extends the camera selection work to include the motion features. We do not use motion features in our framework because both performers and audience generate continuous motion. Also, the movement of the mobile camera can inject erroneous motion in the video, which is aesthetically appealing. Yu et al. \cite{wyszecki1982color} propose to customize the camera selection and shot lengths based on user preferences. At every lecture webcast receiving site, the user can give score to the videos and specify rules for shot lengths. While such an interactive selection of cameras is useful for educational scenarios, people may ﬁnd it annoying and stressful for performances, particularly when the number of videos is large. 
  
@@ -233,12 +234,12 @@ Shrestha et al.[15] & No & No & No  & No  & No & Live Performances\\
 
 
 \section{The MOVIMASH FRAMEWORK}
-In this section, we ﬁrst enumerate the design principles that we have followed in the development of MoViMash and then describe the framework. After an overview of MoViMash, we focus on individual components.
+I editted this. In this section, we ﬁrst enumerate the design principles that we have followed in the development of MoViMash and then describe the framework. After an overview of MoViMash, we focus on individual components.
 
 
 
 \subsection{Design Principles}
-The end goal of the MoViMash is to produce a mashup that users like. To achieve this goal, we have followed a set of design principles as follows:
+I editted this. The end goal of the MoViMash is to produce a mashup that users like. To achieve this goal, we have followed a set of design principles as follows:
 \begin{itemize}
 \item  \textbf{Video Quality:} In our discussion, video quality includes sharpness,contrast,illumination,and blockiness(due to video compression). A good image quality gives pleasing experience to the viewers \cite{piron1976foundations}. Therefore, in our framework we give priority to good quality videos. 
  \begin{figure}[h]
@@ -255,7 +256,7 @@ The end goal of the MoViMash is to produce a mashup that users like. To achieve 
 The above mentioned design principles are met in our framework through various quality metrics and video selection/ ﬁltering phases, as described in the following section.
 
 \subsection{Framework}
-At every time instant, we have a number of videos to choose from. Once we have chosen the video,we also need to decide when to switch to another video. Hence, there are two main questions involved here that need to be answered for combining videos: (1) which video to select? (2) when to switch to another video? We use a three-phase method to select the video while the length is determined based on learned editing rules and overall quality score of the selected video. 
+I editted this. At every time instant, we have a number of videos to choose from. Once we have chosen the video,we also need to decide when to switch to another video. Hence, there are two main questions involved here that need to be answered for combining videos: (1) which video to select? (2) when to switch to another video? We use a three-phase method to select the video while the length is determined based on learned editing rules and overall quality score of the selected video. 
 
 Figure \ref{fig:figure2} shows the block diagram of overall framework. The proposed framework consists of one ofﬂine learning phase and three online selection phases namely ﬁltering, classiﬁcation, and selection. At any given time, the following steps are taken to select the most suitable video at current instant:
 
@@ -610,7 +611,7 @@ User ratings for overall video quality are shown in the Figure 8. We can see tha
 
 It is important to note that although many users liked VQ-Only created videos more than MoViMash, they did not specify any concrete aspect they liked about the video except selection of less shaky videos. Thus, for the given dataset, even though VQ-Only method is also able to produce videos with reasonable good quality, it will fail in many real scenarios as it does not have any provision for view quality and smooth shot transitions. 
 \subsection{Discussion}
-The MoViMash framework takes automatic mashup creation methods closer to the human editors. It, however, adds to the processing cost. The enhanced diversity model requires more memory for storing the history and more number of comparisons. Similarly, occlusion and tilt also require data processing that would have quadratic complexity in terms of the number of pixels in the image. Therefore, individual components of the framework could be enabled or disabled depending on the quality of the candidate videos. For example, if the videos are taken from the stand-mounted cameras, shakiness calculation can be omitted. Furthermore, to make the system scalable, we can process down scaled images as the video resolution is not critical for the current system components.
+I editted this. The MoViMash framework takes automatic mashup creation methods closer to the human editors. It, however, adds to the processing cost. The enhanced diversity model requires more memory for storing the history and more number of comparisons. Similarly, occlusion and tilt also require data processing that would have quadratic complexity in terms of the number of pixels in the image. Therefore, individual components of the framework could be enabled or disabled depending on the quality of the candidate videos. For example, if the videos are taken from the stand-mounted cameras, shakiness calculation can be omitted. Furthermore, to make the system scalable, we can process down scaled images as the video resolution is not critical for the current system components.
 \section{Conclusion\&Future Work}
 In this paper, we have proposed and validated an online video mashup creation framework, MoViMash, for videos recorded by mobile devices. Based on the experiments and user study, we make following conclusions: 
 \begin{itemize}
@@ -622,7 +623,7 @@ In this paper, we have proposed and validated an online video mashup creation fr
 \end{itemize}
 In the future, we want to extensively evaluate individual components of the system with respect to end-to-end system delay and output mashup quality. As current mobiles are capable of recording full HD video, we want to insert artiﬁcial zoom and pan in the mashup using zoomable video techniques \cite{economou1983green}. Further, a human director can only compare a limited number of videos at a time. A powerful computer, however, can process and compare a large number of videos simultaneously. Therefore, in the future we want to study the impact of the number of videos on \cite{cabrera2001path} the quality of the ﬁnal mashup.
 \section*{Acknowlegment}
-Acknowledgment This research is conducted under the NExT Search Center, supported by the Singapore National Research Foundation and the Interactive \cite{carter2007ceramic} Digital Media R\&D Program Ofﬁce of Media Development Authority under research grant WBS:R-252-300-001-490.
+I editted this. Acknowledgment This research is conducted under the NExT Search Center, supported by the Singapore National Research Foundation and the Interactive \cite{carter2007ceramic} Digital Media R\&D Program Ofﬁce of Media Development Authority under research grant WBS:R-252-300-001-490.
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
